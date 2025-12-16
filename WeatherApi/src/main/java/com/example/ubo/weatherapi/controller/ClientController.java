@@ -2,12 +2,13 @@ package com.example.ubo.weatherapi.controller;
 
 import dto.clientapi.User;
 import com.example.ubo.weatherapi.business.ClientBusiness;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Component;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
-@RestController
-@RequestMapping("/api/v1/client")
+@Component
+@Path("/client") // L'URL sera /api/v1 (JerseyConfig) + /client
 public class ClientController {
 
     private final ClientBusiness clientBusiness;
@@ -16,11 +17,17 @@ public class ClientController {
         this.clientBusiness = clientBusiness;
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody User userDto) {
+    @POST
+    @Path("/signup")
+    @Consumes(MediaType.APPLICATION_JSON) // On accepte du JSON
+    @Produces(MediaType.TEXT_PLAIN)       // On renvoie du texte
+    public Response signup(User userDto) {
         // Appel de la couche Business
         clientBusiness.createNewClient(userDto);
 
-        return new ResponseEntity<>("Client créé avec succès", HttpStatus.CREATED);
+        // Réponse type JAX-RS (équivalent à ResponseEntity)
+        return Response.status(Response.Status.CREATED)
+                .entity("Client créé avec succès")
+                .build();
     }
 }
