@@ -1,0 +1,366 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0",
+    "title": "weather_api",
+    "license": {
+      "name": ""
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/weather/{city-id}": {
+      "get": {
+        "summary": "GET weather by city id",
+        "operationId": "get-weather-by-city-id",
+        "parameters": [
+          {
+            "name": "city-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Weather"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ]
+      }
+    },
+    "/city": {
+      "get": {
+        "summary": "GET city",
+        "operationId": "get-city",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ]
+      },
+      "post": {
+        "summary": "POST city",
+        "operationId": "post-city",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/City"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ]
+      }
+    },
+    "/city/{city-id}": {
+      "put": {
+        "summary": "PUT city",
+        "operationId": "put-city-city-id",
+        "parameters": [
+          {
+            "name": "city-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ]
+      },
+      "delete": {
+        "summary": "DELETE city",
+        "operationId": "delete-city-city-id",
+        "parameters": [
+          {
+            "name": "city-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ]
+      },
+      "get": {
+        "summary": "GET city by id",
+        "operationId": "get-city-city-id",
+        "parameters": [
+          {
+            "name": "city-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/City"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Weather": {
+        "type": "object",
+        "title": "Weather",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "temperature": {
+            "type": "number",
+            "format": "float"
+          },
+          "humidity": {
+            "type": "number",
+            "format": "float"
+          },
+          "unity": {
+            "$ref": "#/components/schemas/UnityEnum"
+          },
+          "city": {
+            "$ref": "#/components/schemas/City"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/VisibilityEnum"
+          }
+        }
+      },
+      "UnityEnum": {
+        "type": "string",
+        "enum": [
+          "CELSIUS",
+          "FAHRENHEIT"
+        ],
+        "title": "UnityEnum"
+      },
+      "City": {
+        "type": "object",
+        "title": "City",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "departement": {
+            "type": "integer"
+          },
+          "region": {
+            "type": "string"
+          },
+          "altitude": {
+            "type": "number"
+          },
+          "position": {
+            "$ref": "#/components/schemas/Position"
+          },
+          "zipcode": {
+            "type": "number"
+          }
+        }
+      },
+      "Position": {
+        "type": "object",
+        "title": "Position",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "float"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "VisibilityEnum": {
+        "type": "string",
+        "enum": [
+          "ENSOLEILLE",
+          "NUAGEUX",
+          "PLUVIEUX",
+          "ORAGEUX",
+          "NEIGE"
+        ],
+        "title": "VisibilityEnum"
+      },
+      "Error": {
+        "type": "object",
+        "title": "Error",
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "x-internal": false
+}
