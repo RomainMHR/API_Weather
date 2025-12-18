@@ -1,9 +1,9 @@
-package com.example.ubo.weatherapi.entity;
+package com.example.ubo.clientapi.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "clients") // Table "clients" dans la nouvelle BDD
+@Table(name = "clients")
 public class ClientEntity {
 
     @Id
@@ -27,7 +27,6 @@ public class ClientEntity {
         this.password = password;
     }
 
-    // Getters et Setters (Génère-les avec Alt+Insert)
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNom() { return nom; }

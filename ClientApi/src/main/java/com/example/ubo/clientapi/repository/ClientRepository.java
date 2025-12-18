@@ -1,6 +1,6 @@
-package com.example.ubo.weatherapi.repository;
+package com.example.ubo.clientapi.repository;
 
-import com.example.ubo.weatherapi.entity.ClientEntity;
+import com.example.ubo.clientapi.entity.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
+// Client HTTP
 public class FeignConfig {
 
     private okhttp3.OkHttpClient getOkHttpClient() {
@@ -26,6 +27,7 @@ public class FeignConfig {
     @Inject
     private ObjectMapper objectMapper;
 
+    // Paramètres de connexion à l'API OpenWeather
     @Bean
     public OpenWeatherClient getOpenWeatherClient(){
         return Feign.builder()
