@@ -10,7 +10,7 @@
     }
   ],
   "paths": {
-    "/users": {
+    "/signup": {
       "post": {
         "summary": "Creation USER",
         "description": "Créer un nouvel utilisateur",
@@ -59,7 +59,7 @@
         ]
       }
     },
-    "/login": {
+    "/signin": {
       "post": {
         "summary": "Authentifier",
         "description": "Authentifier l'utilisateur",

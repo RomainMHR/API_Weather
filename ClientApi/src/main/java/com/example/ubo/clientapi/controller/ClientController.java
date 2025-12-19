@@ -35,7 +35,6 @@ public class ClientController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response signin(User user){
-        this.clientBusiness.signin(ClientMapper.toEntity(user));
-        return Response.ok(user).build();
+        return this.clientBusiness.signin(ClientMapper.toEntity(user));
     }
 }
