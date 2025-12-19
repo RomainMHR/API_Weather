@@ -32,9 +32,7 @@ dependencies{
     implementation("io.github.openfeign:feign-okhttp")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     testImplementation("io.github.openfeign:feign-mock")
-}
 
-dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -45,6 +43,10 @@ dependencies {
 
     implementation("com.h2database:h2:2.4.240")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")
 }
 
 tasks.withType<Test> {

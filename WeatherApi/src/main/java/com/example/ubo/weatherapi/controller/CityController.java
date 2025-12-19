@@ -1,6 +1,7 @@
 package com.example.ubo.weatherapi.controller;
 
 import com.example.ubo.weatherapi.business.CityBusiness;
+import com.example.ubo.weatherapi.configuration.AuthenticationRequired;
 import com.example.ubo.weatherapi.entity.CityEntity;
 import dto.weatherapi.City;
 import jakarta.ws.rs.Consumes;

@@ -1,25 +1,18 @@
 package com.example.ubo.clientapi.entity;
 
-import jakarta.persistence.*;
+// Plus d'imports jakarta.persistence.*
 
-@Entity
-@Table(name = "clients")
 public class ClientEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nom;
     private String prenom;
     private String mail;
     private String password;
 
-    // Constructeur vide (Obligatoire pour JPA)
     public ClientEntity() {
     }
 
-    // Constructeur utilitaire
     public ClientEntity(String nom, String prenom, String mail, String password) {
         this.nom = nom;
         this.prenom = prenom;
@@ -27,6 +20,7 @@ public class ClientEntity {
         this.password = password;
     }
 
+    // Getters et Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getNom() { return nom; }

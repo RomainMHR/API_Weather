@@ -1,8 +1,8 @@
 package com.example.ubo.weatherapi.controller;
 
 import com.example.ubo.weatherapi.business.WeatherBusiness;
+import com.example.ubo.weatherapi.configuration.AuthenticationRequired;
 import com.example.ubo.weatherapi.entity.WeatherEntity;
-import dto.openweather_swagger.Model200;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -22,6 +22,7 @@ public class WeatherController {
     }
 
     @GET
+    @AuthenticationRequired
     @Path("/{cityID}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWeatherForCity(@PathParam("cityID") Integer cityID) {

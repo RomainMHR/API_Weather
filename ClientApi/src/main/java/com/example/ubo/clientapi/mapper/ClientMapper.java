@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class ClientMapper {
 
     // Transforme le DTO (User) en Entité (ClientEntity)
-    public ClientEntity toEntity(User userDto) {
+    public static ClientEntity toEntity(User userDto) {
         if (userDto == null) {
             return null;
         }

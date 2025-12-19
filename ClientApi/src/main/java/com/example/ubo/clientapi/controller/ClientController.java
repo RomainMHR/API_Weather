@@ -6,6 +6,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
+import com.example.ubo.clientapi.mapper.ClientMapper;
 
 @Component
 @Path("/client") // URL = /api/v1 (JerseyConfig) + /client
@@ -28,4 +29,13 @@ public class ClientController {
                 .entity("Client créé avec succès")
                 .build();
     }
+
+    /* @POST
+    @Path("/signin")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response signin(User user){
+        this.clientBusiness.signin(ClientMapper.toEntity(user));
+        return Response.ok(user).build();
+    } */
 }

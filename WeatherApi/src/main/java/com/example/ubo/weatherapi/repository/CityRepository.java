@@ -1,5 +1,6 @@
 package com.example.ubo.weatherapi.repository;
 
+import com.example.ubo.weatherapi.exception.FunctionnalException;
 import dto.weatherapi.City;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -69,23 +70,28 @@ public class CityRepository {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
-        return jdbcTemplate.queryForObject(SQL_GET_CITY_BY_ID, params, (rs, rowNum) -> {
-            City city = new City();
-            city.setId(String.valueOf(rs.getInt("id")));
-            city.setName(rs.getString("name"));
-            city.setCountry(rs.getString("country"));
-            city.setDepartement(rs.getInt("departement"));
-            city.setRegion(rs.getString("region"));
-            city.setAltitude(BigDecimal.valueOf(Long.parseLong(rs.getString("altitude"))));
-            city.setZipcode(BigDecimal.valueOf(Long.parseLong(rs.getString("zipcode"))));
+        try {
+            return jdbcTemplate.queryForObject(SQL_GET_CITY_BY_ID, params, (rs, rowNum) -> {
+                City city = new City();
+                city.setId(String.valueOf(rs.getInt("id")));
+                city.setName(rs.getString("name"));
+                city.setCountry(rs.getString("country"));
+                city.setDepartement(rs.getInt("departement"));
+                city.setRegion(rs.getString("region"));
+                city.setAltitude(BigDecimal.valueOf(Long.parseLong(rs.getString("altitude"))));
+                city.setZipcode(BigDecimal.valueOf(Long.parseLong(rs.getString("zipcode"))));
 
-            dto.weatherapi.Position position = new dto.weatherapi.Position();
-            position.setLatitude((float) rs.getDouble("latitude"));
-            position.setLongitude((float) rs.getDouble("longitude"));
-            city.setPosition(position);
+                dto.weatherapi.Position position = new dto.weatherapi.Position();
+                position.setLatitude((float) rs.getDouble("latitude"));
+                position.setLongitude((float) rs.getDouble("longitude"));
+                city.setPosition(position);
 
-            return city;
-        });
+                return city;
+            });
+
+        } catch (Exception e) {
+            throw new FunctionnalException(001, "City not found");
+        }
     }
 
 }

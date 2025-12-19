@@ -23,4 +23,8 @@ public class ClientBusiness {
         // 2. Sauvegarde en base via le Repository
         clientRepository.save(clientEntity);
     }
+
+    /* public void signin(ClientEntity entity) {
+        ClientEntity client = clientRepository.getClientByEmail(entity.getMail());
+    } */
 }
