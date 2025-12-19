@@ -20,4 +20,14 @@ public class JwtUtils {
                 .signWith(secretKey)
                 .compact();
     }
+
+    public static String validateToken(String jwt){
+        var claims = Jwts.parser()
+                .verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
+        return claims.getSubject();
+    }
+
 }

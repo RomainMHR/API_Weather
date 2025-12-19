@@ -30,12 +30,12 @@ public class ClientController {
                 .build();
     }
 
-    /* @POST
+    @POST
     @Path("/signin")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response signin(User user){
         this.clientBusiness.signin(ClientMapper.toEntity(user));
         return Response.ok(user).build();
-    } */
+    }
 }

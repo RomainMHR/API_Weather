@@ -24,7 +24,7 @@ public class ClientBusiness {
         clientRepository.save(clientEntity);
     }
 
-    /* public void signin(ClientEntity entity) {
-        ClientEntity client = clientRepository.getClientByEmail(entity.getMail());
-    } */
+    public void signin(ClientEntity entity) {
+        User user = clientRepository.getClientByEmail(entity.getMail());
+    }
 }
