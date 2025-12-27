@@ -36,4 +36,13 @@ public class ClientBusiness {
         }
         return Response.status(Response.Status.UNAUTHORIZED).build();
     }
+
+    public boolean isValidToken(String token) {
+        try {
+            JwtUtils.validateToken(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

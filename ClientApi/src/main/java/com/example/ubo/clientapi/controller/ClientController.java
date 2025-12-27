@@ -37,4 +37,17 @@ public class ClientController {
     public Response signin(User user){
         return this.clientBusiness.signin(ClientMapper.toEntity(user));
     }
+
+    @POST
+    @Path("/validate")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response validateToken(String token) {
+        String cleanToken = token.replace("\"", "").trim();
+
+        if (clientBusiness.isValidToken(cleanToken)) {
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.UNAUTHORIZED).build();
+    }
 }

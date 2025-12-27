@@ -1,5 +1,6 @@
 package com.example.ubo.weatherapi.configuration;
 
+import com.example.ubo.weatherapi.clients.ClientApiClient;
 import com.example.ubo.weatherapi.clients.OpenWeatherClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Feign;
@@ -39,4 +40,14 @@ public class FeignConfig {
                 .target(OpenWeatherClient.class, "https://api.openweathermap.org/");
     }
 
+    // Paramètres de connexion à l'API Client
+    @Bean
+    public ClientApiClient getClientApiClient() {
+        return Feign.builder()
+                .encoder(new JacksonEncoder(objectMapper))
+                .client(new OkHttpClient(getOkHttpClient()))
+                .logger(new Logger.JavaLogger(FeignConfig.class))
+                .logLevel(Logger.Level.FULL)
+                .target(ClientApiClient.class, "http://localhost:8000/api/v1");
+    }
 }
